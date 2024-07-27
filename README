@@ -1,0 +1,4 @@
+Dynamically typed scripting language written in Zig
+
+* Following Thorsten Ball's excellent interpreters book to start
+* This IS a learning opportunity, not a production tool
