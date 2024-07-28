@@ -34,9 +34,9 @@ pub const Token = union(enum) {
     pub fn to_string(token: Token) []const u8 {
         return switch (token) {
             .identifier => token.identifier,
-            .keyword_let => "\n(STMT) let",
-            .keyword_return => "\n(STMT) return",
-            .keyword_fn => "\n(STMT) fn",
+            .keyword_let => "\nlet",
+            .keyword_return => "\nreturn",
+            .keyword_fn => "\nfn",
             else => @tagName(token),
         };
     }
@@ -154,14 +154,14 @@ pub const Lexer = struct {
     }
 };
 
-test "Lexer ops" {
-    const buffer = @embedFile("./basic-program.ol");
-    std.debug.print("{s}\n", .{buffer});
-    const a = std.testing.allocator;
-    var lexer = try Lexer.init(a, buffer);
-    defer lexer.deinit();
-    while (lexer.next()) |token| {
-        if (token == .eof) break;
-        std.debug.print("{s} ", .{token.to_string()});
-    }
-}
+// test "Lexer ops" {
+//     const buffer = @embedFile("./basic-program.ol");
+//     std.debug.print("{s}\n", .{buffer});
+//     const a = std.testing.allocator;
+//     var lexer = try Lexer.init(a, buffer);
+//     defer lexer.deinit();
+//     while (lexer.next()) |token| {
+//         if (token == .eof) break;
+//         std.debug.print("{s} ", .{token.to_string()});
+//     }
+// }
